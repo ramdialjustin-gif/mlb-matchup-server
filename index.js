@@ -31,12 +31,17 @@ app.get('/api/teams', async (req, res) => {
 app.get('/api/roster/:teamId', async (req, res) => {
   try {
     const { teamId } = req.params;
-    const { season = 2025 } = req.query;
-    const data = await mlbFetch(`/teams/${teamId}/roster?rosterType=active&season=${season}&hydrate=person`);
+
+    const data = await mlbFetch(`/teams/${teamId}/roster`);
+
     const pitchers = (data.roster || [])
       .filter(p => p.position?.code === 'P')
-      .map(p => ({ id: p.person.id, name: p.person.fullName }))
+      .map(p => ({
+        id: p.person.id,
+        name: p.person.fullName
+      }))
       .sort((a, b) => a.name.localeCompare(b.name));
+
     res.json(pitchers);
   } catch (e) {
     res.status(500).json({ error: e.message });

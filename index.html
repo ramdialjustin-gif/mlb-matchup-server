@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLB Matchup Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>MLB Matchup Analyzer</h1>
+    <p class="subtitle">Choose a batting team and an opposing pitcher, then analyze the matchup.</p>
+
+    <div class="card">
+      <div class="grid">
+        <label>
+          <span>Season</span>
+          <input id="season" type="number" value="2025" min="2020" max="2030" />
+        </label>
+
+        <label>
+          <span>Batting Team</span>
+          <select id="battingTeam">
+            <option value="">Loading teams...</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Pitcher's Team</span>
+          <select id="pitchingTeam">
+            <option value="">Select a team</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Pitcher</span>
+          <select id="pitcher">
+            <option value="">Select a pitcher's team first</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Batter Hand Filter</span>
+          <select id="hand">
+            <option value="all">All Batters</option>
+            <option value="L">Left-Handed Batters</option>
+            <option value="R">Right-Handed Batters</option>
+            <option value="S">Switch Hitters</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="analyzeBtn">Analyze Matchup</button>
+      </div>
+
+      <p id="status" class="status"></p>
+    </div>
+
+    <div id="pitcherCard" class="card hidden"></div>
+
+    <div id="resultsCard" class="card hidden">
+      <h2>Top Batter Matchups</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Batter</th>
+              <th>Pos</th>
+              <th>Hand</th>
+              <th>AVG</th>
+              <th>OBP</th>
+              <th>SLG</th>
+              <th>OPS</th>
+              <th>K%</th>
+              <th>BB%</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
